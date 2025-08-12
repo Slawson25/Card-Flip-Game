@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-image: url(images/peter_rabbit.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+
+.card-container {
+  padding: 50px;
+}
+
+.card {
+  width: 100%;
+  aspect-ratio: 2/3;
+  max-width: 180px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;;
+  height: 200px;
+  perspective: 1000px;
+  margin: 20px auto;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+}
+
+.card.matched .card-inner {
+  pointer-events: none;
+}
+
+.card-front {
+  background: #f3f3f3;
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.card-back {
+  background: #ddd;
+  transform: rotateY(0deg);
+  border: 2px solid black;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#reset-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: orange;
+  color: blue;
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+#congrats-message {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: linear-gradient(135deg, #fff8dc, #e6ffe6);
+  border: 3px dashed #8ecae6;
+  border-radius: 20px;
+  padding: 30px 40px;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2rem;
+  color: #2a9d8f;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  animation: fadeScale 1s ease-out forwards;
+  z-index: 999;
+}
+
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 120px;
+    font-size: 1rem;
+  }
+}
